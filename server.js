@@ -28,7 +28,7 @@ const Books = sequelize.define('book', {
 // ------------------------------------------------------------
 
 app.get('/', async (req, res, next) => {
-    //res.redirect('/api/chimamanda') // want to keep this? decide later
+    res.redirect('/api/chimamanda') // want to keep this? decide later
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -67,6 +67,6 @@ const init = async () => {
     catch(error){
         next(error);
     }
-} // test
+} 
 
 init();

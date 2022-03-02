@@ -11,18 +11,40 @@
 
         // add class component here
 
-        class Main extends React.Component {
-                // testing
-        }
+class Main extends React.Component {
+    constructor() {
+        super();
+        this.state = { 
+            books: []
+        };    
+    }
 
         // add componentDidMount() here
-        async componentDidMount() {}
+    async componentDidMount() {
+        const books = await axios.get('/api/chimamanda')
+        this.setState({books: books.data})
+    }
 
         // add render function here
-        render() {}
+    render() {
+        return (
+            <div>
+            <h1> Books by Chimamanda Ngozi Adichie:</h1> 
+                <ul>
+                {this.state.data.map(book => {
+                    return ( 
+                        <div><li> {this.state.books.name}</li></div>
+                        )
+                    })
+                } 
+                </ul>   
+            </div>
+            )
+        }      
+}
 // -----  
       const root = document.querySelector('#root');
-      ReactDOM.render(<hr />, root);
+      ReactDOM.render(<Main />, root);
     </script>
   </body>
 </html>

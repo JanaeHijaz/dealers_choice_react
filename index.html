@@ -18,11 +18,15 @@ class Main extends React.Component {
             books: []
         };    
     }
-
         // add componentDidMount() here
     async componentDidMount() {
-        const books = await axios.get('/api/chimamanda')
-        this.setState({books: books.data})
+        try{
+            const books = await axios.get('/api/chimamanda')
+            this.setState({books: books.data})
+        } catch(error) {
+            next(error)
+        }
+        
     }
 
         // add render function here
@@ -31,9 +35,9 @@ class Main extends React.Component {
             <div>
             <h1> Books by Chimamanda Ngozi Adichie:</h1> 
                 <ul>
-                {this.state.data.map(book => {
+                {this.state.books.map(book => {
                     return ( 
-                        <div><li> {this.state.books.name}</li></div>
+                        <div><li> {book.name}</li></div>
                         )
                     })
                 } 

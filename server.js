@@ -26,9 +26,8 @@ const Books = sequelize.define('book', {
 
 
 // ------------------------------------------------------------
-
+ 
 app.get('/', async (req, res, next) => {
-    res.redirect('/api/chimamanda') // want to keep this? decide later
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
@@ -55,11 +54,11 @@ const init = async () => {
         await Books.create({name: 'For Love of Biafra', published: 1998 })
         await Books.create({name: 'Purple Hibiscus', published: 2003 })
         await Books.create({name: 'Half Of a Yellow Sun', published: 2006 })
-        await Books.create({name: 'the Thing Around Your Neck', published: 2009 })
+        await Books.create({name: 'The Thing Around Your Neck', published: 2009 })
         await Books.create({name: 'Americanah', published: 2013 })
         await Books.create({name: 'Notes on Grief', published: 2021 })
 
-        const port = process.env.PORT || 3000;
+        const port = process.env.PORT || 3030;
         app.listen(port, () => {
             console.log(`Listening on Port ${port}`)
         });

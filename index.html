@@ -16,7 +16,8 @@ class Main extends React.Component {
         super();
         this.state = { 
             books: []
-        };    
+        }; 
+        //this.destroy = this.destroy.bind(this)   
     }
         // add componentDidMount() here
     async componentDidMount() {
@@ -28,16 +29,30 @@ class Main extends React.Component {
         }
         
     }
+    
+
+    async create() { // not working. I think i'd need to use a form to add more book information. 
+       const response = await axios.post('api/chimamanda')
+       console.log(response.data)
+    }
+
+    async destroy(book) { // not working 
+        await axios.delete(`/api/chimamanda/${book.id}`);
+        //const books = this.state.books.filter(_book => _book.id !== book.id);
+        //this.setState({ books })
+        console.log(`${book.id}`)
+    }
 
         // add render function here
     render() {
         return (
             <div>
             <h1> Books by Chimamanda Ngozi Adichie:</h1> 
+            <button onClick={ this.create }> Create </button> 
                 <ul>
                 {this.state.books.map(book => {
                     return ( 
-                        <div><li> {book.name}</li></div>
+                        <div><li> {book.name}: {book.published} <button onClick={ () => this.destroy(book) }> Delete </button> </li></div>
                         )
                     })
                 } 
